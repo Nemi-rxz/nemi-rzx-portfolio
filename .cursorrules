@@ -1,0 +1,20 @@
+# Nemi RZX Portfolio - Cursor Rules
+
+This project is a hybrid portfolio consisting of a modern React frontend (`client/`), an Express/MongoDB backend (`server/`), and legacy 3D components (`src/`).
+
+## Project Structure
+- `client/`: The active React frontend (Vite).
+- `server/`: The Express API.
+- `src/`: Legacy 3D "Creative Technology" components.
+- `public/`: Assets used by both client and legacy components.
+
+## Tech Stack
+- Frontend: React, Vite, CSS Modules.
+- Backend: Node.js, Express, MongoDB (Mongoose).
+- 3D: Three.js, React Three Fiber (integration in progress).
+
+## Guidelines
+- When modifying the frontend, prioritize the `client/` directory.
+- The `server/` uses JWT authentication via httpOnly cookies.
+- Site content is managed via the Admin dashboard at `/admin`.
+- Use the `npm run dev` command from the root to start both client and server.
