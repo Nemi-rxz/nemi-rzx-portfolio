@@ -5,6 +5,7 @@ A Nemi RZX styled full-stack portfolio for Emmanuel Nemi, built with a React fro
 ## Deployment
 - Frontend: Vercel
 - Backend: Render
+- Auto-seeds database on first run
 
 ## Stack
 
