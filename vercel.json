@@ -1,8 +1,4 @@
 {
-  "version": 2,
-  "buildCommand": "npm run build -w client",
-  "outputDirectory": "client/dist",
-  "public": "client/public",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
