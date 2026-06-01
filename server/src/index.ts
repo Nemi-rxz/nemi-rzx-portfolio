@@ -17,7 +17,19 @@ const app = express();
 
 app.use(
   cors({
-    origin: config.clientUrl,
+    origin: (origin, cb) => {
+      // Allow localhost for development, and any Vercel URL for production
+      const allowedOrigins = [
+        "http://localhost:5173",
+        "http://localhost:3000",
+      ];
+      // Allow any Vercel preview/production URL (starts with https://*.vercel.app)
+      if (!origin || allowedOrigins.includes(origin) || origin.includes(".vercel.app")) {
+        cb(null, origin);
+      } else {
+        cb(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
