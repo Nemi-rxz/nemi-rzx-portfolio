@@ -2,6 +2,10 @@
 
 A Nemi RZX styled full-stack portfolio for Emmanuel Nemi, built with a React frontend, Express API, editable project data, uploads, authentication, and an admin dashboard.
 
+## Deployment
+- Frontend: Vercel
+- Backend: Render
+
 ## Stack
 
 - Client: Vite, React, React Router, Three.js
