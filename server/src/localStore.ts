@@ -212,6 +212,22 @@ export async function ensureLocalAdminUser(): Promise<void> {
   await writeStore(data);
 }
 
+export async function ensureLocalSiteContent(): Promise<void> {
+  const data = await readStore();
+  if (data.site) return;
+
+  data.site = defaultSite();
+  await writeStore(data);
+}
+
+export async function ensureLocalProjects(): Promise<void> {
+  const data = await readStore();
+  if (data.projects.length > 0) return;
+
+  data.projects = defaultProjects();
+  await writeStore(data);
+}
+
 export const localStore = {
   async getPublishedProjects() {
     const data = await readStore();
