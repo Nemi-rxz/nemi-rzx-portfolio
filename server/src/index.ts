@@ -4,10 +4,11 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import { fileURLToPath } from "url";
 import { config } from "./config.js";
-import { connectDb, ensureAdminUser } from "./db.js";
+import { connectDb } from "./db.js";
 import authRoutes from "./routes/auth.js";
 import publicRoutes from "./routes/public.js";
 import adminRoutes from "./routes/admin.js";
+import { autoSeed } from "./autoSeed.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const uploadsDir = path.resolve(__dirname, "../uploads");
@@ -38,7 +39,7 @@ app.get("/", (_req, res) => {
 
 async function start() {
   await connectDb();
-  await ensureAdminUser();
+  await autoSeed();
   app.listen(config.port, () => {
     console.log(`API running on http://localhost:${config.port}`);
   });
