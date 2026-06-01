@@ -1,4 +1,4 @@
-const base = "";
+const base = import.meta.env.VITE_API_URL || "";
 
 async function request<T>(
   path: string,
@@ -56,7 +56,7 @@ export const api = {
   uploadImage: async (file: File) => {
     const form = new FormData();
     form.append("image", file);
-    const res = await fetch("/api/admin/upload", {
+    const res = await fetch(`${base}/api/admin/upload`, {
       method: "POST",
       credentials: "include",
       body: form,

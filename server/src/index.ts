@@ -32,6 +32,10 @@ app.get("/api/health", (_req, res) => {
   res.json({ ok: true });
 });
 
+app.get("/", (_req, res) => {
+  res.json({ message: "Nemi RZX Portfolio API is running!", status: "ok" });
+});
+
 async function start() {
   await connectDb();
   await ensureAdminUser();
