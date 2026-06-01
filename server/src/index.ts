@@ -42,7 +42,7 @@ async function start() {
   await autoSeed();
   app.listen(config.port, () => {
     console.log(`API running on http://localhost:${config.port}`);
-    console.log("Ready for requests!");
+    console.log("Ready for requests! 🚀");
   });
 }
 
