@@ -25,7 +25,7 @@ const loginSchema = z.object({
 const cookieOptions = {
   httpOnly: true,
   secure: config.nodeEnv === "production",
-  sameSite: "lax" as const,
+  sameSite: config.nodeEnv === "production" ? ("none" as const) : ("lax" as const),
   maxAge: 7 * 24 * 60 * 60 * 1000,
 };
 
@@ -56,7 +56,11 @@ router.post("/login", loginLimiter, async (req, res: Response) => {
 });
 
 router.post("/logout", (_req, res: Response) => {
-  res.clearCookie("token", { httpOnly: true, sameSite: "lax" });
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: config.nodeEnv === "production",
+    sameSite: config.nodeEnv === "production" ? "none" : "lax",
+  });
   res.json({ ok: true });
 });
 
