@@ -7,21 +7,20 @@ export default function ValueSection({
   valueBody,
   clientLogos,
 }: Props) {
+  const visibleLogos = clientLogos?.filter(Boolean) || [];
+
   return (
     <section className="value-section" id="about">
       <div className="section-container">
         <h2 className="value-headline">{valueHeadline}</h2>
         <p className="value-body">{valueBody}</p>
-        <div className="client-logos" aria-hidden={!clientLogos?.length}>
-          {(clientLogos?.length ? clientLogos : Array(8).fill("")).map(
-            (logo, i) =>
-              logo ? (
-                <img key={i} src={logo} alt="" width={80} height={28} loading="lazy" />
-              ) : (
-                <div key={i} className="client-logo-placeholder" />
-              )
-          )}
-        </div>
+        {visibleLogos.length > 0 && (
+          <div className="client-logos" aria-hidden={false}>
+            {visibleLogos.map((logo, i) => (
+              <img key={i} src={logo} alt="" width={80} height={28} loading="lazy" />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

@@ -34,6 +34,8 @@ export interface SiteContent {
   heroAvatarUrl: string;
   valueHeadline: string;
   valueBody: string;
+  contactHeading: string;
+  footerNote: string;
   services: Service[];
   socialLinks: SocialLink[];
   techIcons: string[];

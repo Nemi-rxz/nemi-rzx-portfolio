@@ -21,6 +21,8 @@ export interface ISiteContent extends Document {
   heroAvatarUrl: string;
   valueHeadline: string;
   valueBody: string;
+  contactHeading: string;
+  footerNote: string;
   services: IService[];
   socialLinks: ISocialLink[];
   techIcons: string[];
@@ -50,11 +52,28 @@ const siteContentSchema = new Schema<ISiteContent>(
   {
     heroTitle: { type: String, default: "Nemi RZX" },
     heroRole: { type: String, default: "Creative Technologist" },
-    heroBio: { type: String, default: "" },
-    heroNameDisplay: { type: String, default: "NEMI RZX" },
-    heroAvatarUrl: { type: String, default: "" },
-    valueHeadline: { type: String, default: "" },
-    valueBody: { type: String, default: "" },
+    heroBio: {
+      type: String,
+      default:
+        "I am Emmanuel Nemi, a creative technologist building web products, multimedia systems, campaign experiences, and SEO-ready digital platforms for ambitious brands.",
+    },
+    heroNameDisplay: { type: String, default: "EMMANUEL NEMI" },
+    heroAvatarUrl: { type: String, default: "/images/emmanuel-nemi-hero.jpg" },
+    valueHeadline: {
+      type: String,
+      default:
+        "I turn technical ideas, visual stories, and growth goals into polished digital experiences.",
+    },
+    valueBody: {
+      type: String,
+      default:
+        "My work blends engineering, design judgment, content systems, and campaign thinking so every project can look sharp, load fast, and convert across web, social, and search.",
+    },
+    contactHeading: { type: String, default: "Let's build something great together" },
+    footerNote: {
+      type: String,
+      default: "Available for freelance, partnerships, and digital product work.",
+    },
     services: [serviceSchema],
     socialLinks: [socialSchema],
     techIcons: [{ type: String }],

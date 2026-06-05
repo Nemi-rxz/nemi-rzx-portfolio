@@ -10,7 +10,7 @@ export const config = {
   mongoUri:
     process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/emmanuel-nemi-portfolio",
   jwtSecret: process.env.JWT_SECRET || "dev-secret-change-in-production",
-  adminEmail: process.env.ADMIN_EMAIL || "admin@emmanuelnemi.com",
+  adminEmail: process.env.ADMIN_EMAIL || "admin@nemirzx.com",
   adminPassword: process.env.ADMIN_PASSWORD || "changeme123",
   clientUrl: process.env.CLIENT_URL || "http://localhost:5173",
   nodeEnv: process.env.NODE_ENV || "development",

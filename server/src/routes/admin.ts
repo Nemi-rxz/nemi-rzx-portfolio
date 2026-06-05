@@ -62,6 +62,8 @@ const siteSchema = z.object({
   heroAvatarUrl: z.string().optional(),
   valueHeadline: z.string().optional(),
   valueBody: z.string().optional(),
+  contactHeading: z.string().optional(),
+  footerNote: z.string().optional(),
   services: z
     .array(
       z.object({

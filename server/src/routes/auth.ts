@@ -52,7 +52,7 @@ router.post("/login", loginLimiter, async (req, res: Response) => {
     expiresIn: "7d",
   });
   res.cookie("token", token, cookieOptions);
-  res.json({ ok: true, email: user.email });
+  res.json({ ok: true, email: user.email, token });
 });
 
 router.post("/logout", (_req, res: Response) => {

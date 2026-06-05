@@ -11,7 +11,12 @@ export function requireAuth(
   res: Response,
   next: NextFunction
 ): void {
-  const token = req.cookies?.token;
+  const header = req.headers.authorization;
+  const bearerToken =
+    typeof header === "string" && header.startsWith("Bearer ")
+      ? header.slice("Bearer ".length)
+      : undefined;
+  const token = req.cookies?.token || bearerToken;
   if (!token) {
     res.status(401).json({ error: "Unauthorized" });
     return;

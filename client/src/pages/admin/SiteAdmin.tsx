@@ -9,7 +9,10 @@ export default function SiteAdmin() {
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    api.adminGetSite().then((s) => setSite(s as SiteContent)).catch((e) => setError(e.message));
+    api
+      .adminGetSite()
+      .then((s) => setSite(s as SiteContent))
+      .catch((e) => setError(e.message));
   }, []);
 
   async function handleAvatarUpload(file: File) {
@@ -30,7 +33,8 @@ export default function SiteAdmin() {
     setError("");
     setSaved(false);
     try {
-      await api.adminUpdateSite(site);
+      const updatedSite = await api.adminUpdateSite(site);
+      setSite(updatedSite as SiteContent);
       setSaved(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Save failed");
@@ -111,6 +115,20 @@ export default function SiteAdmin() {
           <textarea
             value={site.valueBody}
             onChange={(e) => setSite({ ...site, valueBody: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label>Contact heading</label>
+          <input
+            value={site.contactHeading || ""}
+            onChange={(e) => setSite({ ...site, contactHeading: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label>Footer note</label>
+          <textarea
+            value={site.footerNote || ""}
+            onChange={(e) => setSite({ ...site, footerNote: e.target.value })}
           />
         </div>
         <div className="form-group">

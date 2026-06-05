@@ -254,13 +254,6 @@
   opacity: 0.35;
 }
 
-.client-logo-placeholder {
-  width: 80px;
-  height: 28px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 4px;
-}
-
 /* Services */
 .services-section {
   padding: 3rem 1rem 4rem;

@@ -21,8 +21,13 @@ export default function ProjectsAdmin() {
   const [error, setError] = useState("");
   const [uploading, setUploading] = useState(false);
 
-  function load() {
-    api.adminGetProjects().then(setProjects).catch((e) => setError(e.message));
+  async function load() {
+    try {
+      setError("");
+      setProjects(await api.adminGetProjects());
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to load projects");
+    }
   }
 
   useEffect(() => {
@@ -50,14 +55,23 @@ export default function ProjectsAdmin() {
       order: Number(form.order),
     };
     try {
-      if (editingId) {
-        await api.adminUpdateProject(editingId, payload);
-      } else {
-        await api.adminCreateProject(payload);
-      }
+      const savedProject = editingId
+        ? await api.adminUpdateProject(editingId, payload)
+        : await api.adminCreateProject(payload);
+
+      setProjects((current) => {
+        if (editingId) {
+          return current.map((project) =>
+            project._id === savedProject._id ? savedProject : project
+          );
+        }
+        return [...current, savedProject].sort(
+          (a, b) => a.order - b.order || a.title.localeCompare(b.title)
+        );
+      });
+
       setForm(emptyForm);
       setEditingId(null);
-      load();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Save failed");
     }
@@ -80,8 +94,13 @@ export default function ProjectsAdmin() {
 
   async function remove(id: string) {
     if (!confirm("Delete this project?")) return;
-    await api.adminDeleteProject(id);
-    load();
+    try {
+      setError("");
+      await api.adminDeleteProject(id);
+      setProjects((current) => current.filter((project) => project._id !== id));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Delete failed");
+    }
   }
 
   return (
@@ -191,33 +210,35 @@ export default function ProjectsAdmin() {
         </div>
       </form>
 
-      <table className="admin-table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Published</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {projects.map((p) => (
-            <tr key={p._id}>
-              <td>{p.title}</td>
-              <td>{p.category}</td>
-              <td>{p.published ? "Yes" : "No"}</td>
-              <td className="admin-actions">
-                <button type="button" className="btn" onClick={() => startEdit(p)}>
-                  Edit
-                </button>
-                <button type="button" className="btn btn-danger" onClick={() => remove(p._id)}>
-                  Delete
-                </button>
-              </td>
+      <div className="admin-table-wrap">
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Published</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {projects.map((p) => (
+              <tr key={p._id}>
+                <td>{p.title}</td>
+                <td>{p.category}</td>
+                <td>{p.published ? "Yes" : "No"}</td>
+                <td className="admin-actions">
+                  <button type="button" className="btn" onClick={() => startEdit(p)}>
+                    Edit
+                  </button>
+                  <button type="button" className="btn btn-danger" onClick={() => remove(p._id)}>
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

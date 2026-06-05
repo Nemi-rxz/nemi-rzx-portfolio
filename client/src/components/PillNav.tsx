@@ -1,4 +1,4 @@
-import { FiArrowRight, FiShoppingBag, FiCheck } from "react-icons/fi";
+import { FiArrowRight, FiDownload, FiCheck } from "react-icons/fi";
 
 export default function PillNav() {
   return (
@@ -9,11 +9,11 @@ export default function PillNav() {
         </span>
         See my work
       </a>
-      <a href="#projects" className="pill-btn">
+      <a href="/Emmanuel_Iwo_CV.pdf" className="pill-btn" target="_blank" rel="noreferrer">
         <span className="pill-icon">
-          <FiShoppingBag />
+          <FiDownload />
         </span>
-        My catalog
+        Download CV
       </a>
       <a href="#contact" className="pill-btn">
         <span className="pill-icon">

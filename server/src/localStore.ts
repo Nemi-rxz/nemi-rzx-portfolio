@@ -36,6 +36,8 @@ type SiteRecord = {
   heroAvatarUrl: string;
   valueHeadline: string;
   valueBody: string;
+  contactHeading: string;
+  footerNote: string;
   services: Array<{
     title: string;
     description: string;
@@ -59,6 +61,9 @@ type StoreData = {
   projects: ProjectRecord[];
 };
 
+type SeedSiteRecord = Omit<SiteRecord, "_id" | "createdAt" | "updatedAt">;
+type SeedProjectRecord = Omit<ProjectRecord, "_id" | "createdAt" | "updatedAt">;
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.resolve(__dirname, "../data");
 const dataFile = path.join(dataDir, "dev-db.json");
@@ -66,54 +71,120 @@ const dataFile = path.join(dataDir, "dev-db.json");
 const now = () => new Date().toISOString();
 const id = () => `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 10)}`;
 
+export const seedSiteContent: SeedSiteRecord = {
+  heroTitle: "Nemi RZX",
+  heroRole: "Creative Technologist",
+  heroNameDisplay: "EMMANUEL NEMI",
+  heroBio:
+    "I am Emmanuel Nemi, a creative technologist building web products, multimedia systems, campaign experiences, and SEO-ready digital platforms for ambitious brands.",
+  heroAvatarUrl: "/images/emmanuel-nemi-hero.jpg",
+  valueHeadline:
+    "I turn technical ideas, visual stories, and growth goals into polished digital experiences.",
+  valueBody:
+    "My work blends engineering, design judgment, content systems, and campaign thinking so every project can look sharp, load fast, and convert across web, social, and search.",
+  contactHeading: "Let's build something great together",
+  footerNote: "Available for freelance, partnerships, and digital product work.",
+  services: [
+    {
+      title: "Digital Experience/Web Developer",
+      description: "Builds fast, modern websites and web apps for brands and campaigns.",
+      imageUrl: "/images/service-digital-experience.jpg",
+      order: 0,
+    },
+    {
+      title: "Multimedia Production",
+      description: "Creates visual content, motion assets, and media for launches and promotions.",
+      imageUrl: "/images/service-multimedia.jpg",
+      order: 1,
+    },
+    {
+      title: "Digital Campaign Technology",
+      description: "Develops landing pages, funnels, and campaign systems that drive action.",
+      imageUrl: "/images/service-campaign.jpg",
+      order: 2,
+    },
+    {
+      title: "SEO Services",
+      description: "Improves search visibility with technical SEO, content structure, and analytics.",
+      imageUrl: "/images/service-seo.jpg",
+      order: 3,
+    },
+  ],
+  socialLinks: [
+    { platform: "github", url: "https://github.com/Nemi-rxz", label: "GitHub" },
+    {
+      platform: "linkedin",
+      url: "https://www.linkedin.com/in/emmanuel-nemi-5019a3ba",
+      label: "LinkedIn",
+    },
+    { platform: "instagram", url: "https://www.instagram.com/nemi.rzx/", label: "Instagram" },
+    { platform: "email", url: "mailto:emwoiwo@gmail.com", label: "Email" },
+    { platform: "resume", url: "/Emmanuel_Iwo_CV.pdf", label: "Resume" },
+    { platform: "whatsapp", url: "https://wa.me/2348082103542", label: "WhatsApp" },
+    { platform: "x", url: "https://x.com/nemi_rzx?s=11", label: "X" },
+  ],
+  techIcons: [
+    "React",
+    "Node.js",
+    "TypeScript",
+    "MongoDB",
+    "Vercel",
+    "SEO",
+    "Canva",
+    "Figma",
+    "Sanity",
+    "WordPress",
+  ],
+  clientLogos: [],
+};
+
+export const seedProjects: SeedProjectRecord[] = [
+  {
+    title: "Brand Website/Editorial Platform",
+    slug: "brand-website-editorial-platform",
+    category: "Web Development",
+    description:
+      "A modern editorial website with CMS, lead capture, and SEO-focused structure built to grow brand visibility.",
+    tools: ["React", "Node.js", "MongoDB"],
+    imageUrl: "/images/project-brand-website.jpg",
+    projectUrl: "https://kaboomklub-website.vercel.app",
+    featured: true,
+    order: 0,
+    published: true,
+  },
+  {
+    title: "Emmanuel Nemi Iwo Portfolio System",
+    slug: "emmanuel-nemi-iwo-portfolio-system",
+    category: "Web Development",
+    description:
+      "A polished portfolio platform that presents creative-technology work, qualifications, and services in one web experience.",
+    tools: ["React", "Node.js", "MongoDB", "Vercel"],
+    imageUrl: "/images/project-nemi-portfolio.jpg",
+    projectUrl: "https://nemi-rzx-portfolio-client.vercel.app",
+    featured: true,
+    order: 1,
+    published: true,
+  },
+  {
+    title: "Music Campaign Microsite",
+    slug: "music-campaign-microsite",
+    category: "Web Development",
+    description:
+      "A campaign microsite designed to capture attention, drive conversions, and track launch performance with measurable results.",
+    tools: ["React", "Node.js", "Vercel"],
+    imageUrl: "/images/project-music-campaign.jpg",
+    projectUrl: "https://package-gold.vercel.app",
+    featured: true,
+    order: 2,
+    published: true,
+  },
+];
+
 function defaultSite(): SiteRecord {
   const date = now();
   return {
     _id: id(),
-    heroTitle: "Nemi RZX",
-    heroRole: "Creative Technologist",
-    heroNameDisplay: "EMMANUEL NEMI",
-    heroBio:
-      "I am Emmanuel Nemi, a creative technologist building full-stack web products, multimedia systems, campaign experiences, and SEO-ready digital platforms for ambitious brands.",
-    heroAvatarUrl: "",
-    valueHeadline:
-      "I turn technical ideas, visual stories, and growth goals into polished digital experiences.",
-    valueBody:
-      "My work blends engineering, design judgment, content systems, and campaign thinking so every project can look sharp, load fast, and convert across web, social, and search.",
-    services: [
-      {
-        title: "Full Stack Web Development",
-        description: "React, Node.js, APIs, dashboards, and production-ready web apps.",
-        imageUrl: "",
-        order: 0,
-      },
-      {
-        title: "Multimedia Production",
-        description: "Video, motion, visuals, and branded assets for launches and campaigns.",
-        imageUrl: "",
-        order: 1,
-      },
-      {
-        title: "Digital Campaign Technology",
-        description: "Landing pages, forms, analytics, automation, and conversion systems.",
-        imageUrl: "",
-        order: 2,
-      },
-      {
-        title: "SEO Services",
-        description: "Technical SEO, content structure, search performance, and analytics.",
-        imageUrl: "",
-        order: 3,
-      },
-    ],
-    socialLinks: [
-      { platform: "github", url: "https://github.com/nemirzx", label: "GitHub" },
-      { platform: "linkedin", url: "https://linkedin.com", label: "LinkedIn" },
-      { platform: "instagram", url: "https://instagram.com/nemirzx", label: "Instagram" },
-      { platform: "email", url: "mailto:hello@nemirzx.com", label: "Email" },
-    ],
-    techIcons: ["React", "Node.js", "TypeScript", "MongoDB", "Three.js", "SEO", "Motion"],
-    clientLogos: [],
+    ...seedSiteContent,
     createdAt: date,
     updatedAt: date,
   };
@@ -121,56 +192,12 @@ function defaultSite(): SiteRecord {
 
 function defaultProjects(): ProjectRecord[] {
   const date = now();
-  return [
-    {
-      _id: id(),
-      title: "Nemi RZX Portfolio System",
-      slug: "nemi-rzx-portfolio-system",
-      category: "Full Stack Web Development",
-      description:
-        "A full-stack portfolio platform with public storytelling, an admin dashboard, editable projects, uploads, authentication, and a 3D character layer.",
-      tools: ["React", "Express", "TypeScript", "MongoDB", "Three.js"],
-      imageUrl: "",
-      projectUrl: "#",
-      featured: true,
-      order: 0,
-      published: true,
-      createdAt: date,
-      updatedAt: date,
-    },
-    {
-      _id: id(),
-      title: "Campaign Launch Engine",
-      slug: "campaign-launch-engine",
-      category: "Digital Campaign Technology",
-      description:
-        "A conversion-focused landing page and tracking stack for launches, lead capture, and measurable campaign performance.",
-      tools: ["React", "Analytics", "Automation"],
-      imageUrl: "",
-      projectUrl: "#",
-      featured: true,
-      order: 1,
-      published: true,
-      createdAt: date,
-      updatedAt: date,
-    },
-    {
-      _id: id(),
-      title: "SEO Growth Dashboard",
-      slug: "seo-growth-dashboard",
-      category: "SEO Services",
-      description:
-        "A reporting concept for technical SEO audits, content opportunities, search visibility, and monthly growth signals.",
-      tools: ["SEO", "APIs", "Data Visualization"],
-      imageUrl: "",
-      projectUrl: "#",
-      featured: false,
-      order: 2,
-      published: true,
-      createdAt: date,
-      updatedAt: date,
-    },
-  ];
+  return seedProjects.map((project) => ({
+    _id: id(),
+    ...project,
+    createdAt: date,
+    updatedAt: date,
+  }));
 }
 
 async function readStore(): Promise<StoreData> {

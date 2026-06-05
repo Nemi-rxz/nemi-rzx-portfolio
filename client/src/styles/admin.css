@@ -138,6 +138,11 @@
   font-size: 0.85rem;
 }
 
+.admin-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .admin-table th,
 .admin-table td {
   padding: 0.75rem;
@@ -188,4 +193,40 @@
   color: #ff8080;
   font-size: 0.85rem;
   margin-top: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .admin-layout {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .admin-main {
+    padding: 1rem;
+  }
+
+  .admin-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .admin-nav a,
+  .admin-nav button {
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  .login-card {
+    padding: 1.25rem;
+  }
+
+  .admin-table {
+    min-width: 640px;
+  }
 }
