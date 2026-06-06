@@ -109,6 +109,12 @@ export const seedSiteContent: SeedSiteRecord = {
       imageUrl: "/images/service-seo.jpg",
       order: 3,
     },
+    {
+      title: "Automation Services",
+      description: "Designs automated workflows, integrations, and coded systems that save time and scale operations.",
+      imageUrl: "/images/service-automation.jpg",
+      order: 4,
+    },
   ],
   socialLinks: [
     { platform: "github", url: "https://github.com/Nemi-rxz", label: "GitHub" },
@@ -129,6 +135,10 @@ export const seedSiteContent: SeedSiteRecord = {
     "TypeScript",
     "MongoDB",
     "Vercel",
+    "Automation Specialist",
+    "n8n",
+    "Workflow Automation",
+    "Programming",
     "SEO",
     "Canva",
     "Figma",
@@ -145,7 +155,7 @@ export const seedProjects: SeedProjectRecord[] = [
     category: "Web Development",
     description:
       "A modern editorial website with CMS, lead capture, and SEO-focused structure built to grow brand visibility.",
-    tools: ["React", "Node.js", "MongoDB"],
+    tools: ["React", "Node.js", "MongoDB", "n8n", "Workflow Automation"],
     imageUrl: "/images/project-brand-website.jpg",
     projectUrl: "https://kaboomklub-website.vercel.app",
     featured: true,
@@ -158,7 +168,15 @@ export const seedProjects: SeedProjectRecord[] = [
     category: "Web Development",
     description:
       "A polished portfolio platform that presents creative-technology work, qualifications, and services in one web experience.",
-    tools: ["React", "Node.js", "MongoDB", "Vercel"],
+    tools: [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Vercel",
+      "n8n",
+      "Workflow Automation",
+      "Programming",
+    ],
     imageUrl: "/images/project-nemi-portfolio.jpg",
     projectUrl: "https://nemi-rzx-portfolio-client.vercel.app",
     featured: true,
@@ -171,7 +189,7 @@ export const seedProjects: SeedProjectRecord[] = [
     category: "Web Development",
     description:
       "A campaign microsite designed to capture attention, drive conversions, and track launch performance with measurable results.",
-    tools: ["React", "Node.js", "Vercel"],
+    tools: ["React", "Node.js", "Vercel", "n8n", "Workflow Automation"],
     imageUrl: "/images/project-music-campaign.jpg",
     projectUrl: "https://package-gold.vercel.app",
     featured: true,
